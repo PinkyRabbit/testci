@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+deploy:
+  docker:
+    - image: circleci/node:12.13.1
+  steps:
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "package.json" }}
+    - run:
+        name: AWS EC2 deploy
+        command: |
+          #upload all the code to machine
+          scp -r -o StrictHostKeyChecking=no ./ ubuntu@13.236.1.107:/home/circleci-aws/
+          #Run script inside of machine
+          ssh -o StrictHostKeyChecking=no ubuntu@13.236.1.107 "./deploy.sh"
