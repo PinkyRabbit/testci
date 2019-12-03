@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Start deploy"
-cd /var/www/myswebsite
+cd /var/www/default
 git pull
 yarn
 yarn start

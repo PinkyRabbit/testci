@@ -11,9 +11,6 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run:
-          name: my echo
-          command: echo ec2-user@$EC2IP "/var/www/$PROJECT_FOLDER/www/deploy.sh"
       - run: yarn install
       - save_cache:
           paths:
@@ -22,4 +19,4 @@ jobs:
       - run: yarn test
       - run:
           name: AWS EC2 deploy
-          command: ssh ec2-user@$EC2IP "/var/www/$PROJECT_FOLDER/www/deploy.sh"
+          command: ssh -o StrictHostKeyChecking=no ec2-user@$EC2IP "/var/www/$PROJECT_FOLDER/www/deploy.sh"
