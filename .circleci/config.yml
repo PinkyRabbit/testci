@@ -19,4 +19,4 @@ jobs:
       - run: yarn test
       - run: deploy-app
         name: AWS EC2 deploy
-        command: ssh ec2-user@${EC2IP} "/var/www/${PROJECT_FOLDER}/www/deploy.sh"
+        command: ssh ec2-user@$EC2IP "/var/www/$PROJECT_FOLDER/www/deploy.sh"
