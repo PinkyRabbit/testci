@@ -11,8 +11,8 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: deploy-app
-          name: AWS EC2 deploy
+      - run:
+          name: my echo
           command: echo ec2-user@$EC2IP "/var/www/$PROJECT_FOLDER/www/deploy.sh"
       - run: yarn install
       - save_cache:
@@ -20,6 +20,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
-      - run: deploy-app
+      - run:
           name: AWS EC2 deploy
           command: ssh ec2-user@$EC2IP "/var/www/$PROJECT_FOLDER/www/deploy.sh"
